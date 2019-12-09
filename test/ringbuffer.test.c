@@ -6,7 +6,7 @@
 RingBuffer* buffer;
 
 void setUp(void) {
-    buffer = ring_create(5);
+    buffer = ring_create(4);
 }
 
 void tearDown(void) {
@@ -23,21 +23,21 @@ void test_ring_create(void)
   }
 }
 
-void empty_ring_should_have_size_0(void)
+void test_empty_ring_should_have_size_0(void)
 {
   int size = buffer->size;
   TEST_ASSERT_EQUAL_INT(0, size);
 }
 
-void should_report_number_of_elements(void)
+void test_should_report_number_of_elements(void)
 {
     ring_add(buffer,1);
     ring_add(buffer,2);
     ring_add(buffer,3);
-     TEST_ASSERT_EQUAL_INT(3, buffer->size);
+    TEST_ASSERT_EQUAL_INT(3, buffer->size);
 }
 
-void should_not_exceed_its_maximum_size(void)
+void test_should_not_exceed_its_maximum_size(void)
 {
   int maxSize = 4 ;
     ring_add(buffer,1);
@@ -54,9 +54,9 @@ int main(void)
    UnityBegin("RingBuffer");
 
    RUN_TEST(test_ring_create);
-   RUN_TEST(empty_ring_should_have_size_0);
-   RUN_TEST(should_report_number_of_elements);
-   RUN_TEST(should_not_exceed_its_maximum_size);
+   RUN_TEST(test_empty_ring_should_have_size_0);
+   RUN_TEST(test_should_report_number_of_elements);
+   RUN_TEST(test_should_not_exceed_its_maximum_size);
 
    UnityEnd();
    return 0;

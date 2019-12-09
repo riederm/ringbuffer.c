@@ -18,17 +18,17 @@ void ring_delete(RingBuffer *buffer)
 }
 
 /*
-* adds the element to the stack
+* adds the element to the ring buffer
 */
-bool ring_add(RingBuffer *buffer, int element)
+void ring_add(RingBuffer *buffer, int element)
 {
-    return false;
+  
 }
 
 /*
-* returns the actual size of the buffer
+* adds the element to the ring buffer
 */
-int ring_size(RingBuffer *buffer)
+bool ring_remove(RingBuffer *buffer, int* result)
 {
-    return -1;
+  
 }

@@ -2,11 +2,11 @@
 #include "../src/ringbuffer.h"
 #include <stdlib.h>
 
-
+const int MAX_SIZE = 4 ;
 RingBuffer* buffer;
 
 void setUp(void) {
-    buffer = ring_create(4);
+    buffer = ring_create(MAX_SIZE);
 }
 
 void tearDown(void) {
@@ -18,7 +18,7 @@ void test_ring_create(void)
   TEST_ASSERT_NOT_NULL(buffer);
   TEST_ASSERT_EQUAL_INT(-1, buffer->size);
 
-  for (size_t i = 0; i < MAX_RING_SIZE; i++) {
+  for (int i = 0; i < MAX_SIZE; i++) {
     TEST_ASSERT_EQUAL_INT_MESSAGE(0, buffer->data[i], "data should be 0");
   }
 }
@@ -39,13 +39,12 @@ void test_should_report_number_of_elements(void)
 
 void test_should_not_exceed_its_maximum_size(void)
 {
-  int maxSize = 4 ;
     ring_add(buffer,1);
     ring_add(buffer,2);
     ring_add(buffer,3);
     ring_add(buffer,4);
     ring_add(buffer,5);
-    TEST_ASSERT_EQUAL_INT(maxSize, buffer->size);
+    TEST_ASSERT_EQUAL_INT(MAX_SIZE, buffer->size);
 }
 
 

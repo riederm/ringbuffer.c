@@ -1,6 +1,7 @@
 #include "ringbuffer.h"
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /*
 * instantiates a new ring buffer and returns a pointer to it.
@@ -48,11 +49,14 @@ bool isEmpty(RingBuffer* buffer){
 void ring_add(RingBuffer *buffer, int element)
 {
     //calc new size
-    if(!isFull(buffer)){
-        buffer->size++;
+    if(isFull(buffer)){
+        int r; 
+        ring_remove(buffer, &r);
     }
+    buffer->data[buffer->size] = element;
+    buffer->size++;
     //write element
-    buffer->data[buffer->lastWriteIndex]=element;
+    /*buffer->data[buffer->lastWriteIndex]=element;
   
   //lets see if we need to move the read-pointer as well (overflow)
     if(buffer->lastWriteIndex == buffer->lastReadIndex && ! isEmpty(buffer)){
@@ -61,7 +65,7 @@ void ring_add(RingBuffer *buffer, int element)
 
     //move write-pointer
     moveIndex(buffer,&buffer->lastWriteIndex);
-
+*/
 }
 
 
@@ -69,10 +73,9 @@ bool ring_remove(RingBuffer* buffer,int* result){
     if(buffer->size == 0){
         return false;
     }
-
-    *result = buffer->data[buffer->lastReadIndex];
-    moveIndex(buffer,&buffer->lastReadIndex);
+    *result = buffer->data[0];
+    int intSize = sizeof(int);
+    memcpy(buffer->data, buffer->data + 1, (buffer->maxSize-1)*intSize);
     buffer->size--;
-
     return true;
 }

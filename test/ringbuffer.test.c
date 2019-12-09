@@ -129,6 +129,30 @@ void test_write_around_the_clock_remove(void)
     TEST_ASSERT_EQUAL_INT(4,result);
 }
 
+
+void test_write_around_the_clock2_remove(void)
+{
+    //make buffer full  
+    ring_add(buffer,1);
+    ring_add(buffer,2);
+    ring_add(buffer,3);
+    ring_add(buffer,4);
+     ring_add(buffer,5);
+      ring_add(buffer,6);
+       ring_add(buffer,7);
+
+
+    int result;
+    ring_remove(buffer,&result);
+    TEST_ASSERT_EQUAL_INT(4,result);
+
+    ring_remove(buffer,&result);
+    TEST_ASSERT_EQUAL_INT(5,result);
+
+    ring_remove(buffer,&result);
+    TEST_ASSERT_EQUAL_INT(6,result);
+}
+
 void test_delete_sets_pointer_to_null(void)
 {
    ring_delete(buffer);
@@ -150,6 +174,7 @@ int main(void)
    RUN_TEST(test_write_around_the_clock);
    RUN_TEST(test_write_around_the_clock_remove);
    RUN_TEST(test_delete_sets_pointer_to_null);
+   RUN_TEST(test_write_around_the_clock2_remove);
    UnityEnd();
    return 0;
 }

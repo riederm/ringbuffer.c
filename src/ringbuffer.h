@@ -7,6 +7,9 @@
 typedef struct tag_name {
    int nbOfElements;    //the number of elements currently stored in the ring
    int* data;  //the actual ring buffer data
+   int maxSize; // the maximum number of elements that can be stored
+
+   int r; int w;
 } RingBuffer;
 
 

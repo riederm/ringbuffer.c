@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 
-typedef struct tag_name {
+typedef struct {
    int nbOfElements;    //the number of elements currently stored in the ring
    int* data;  //the actual ring buffer data
 } RingBuffer;

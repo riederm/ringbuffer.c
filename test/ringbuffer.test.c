@@ -12,7 +12,8 @@ void tearDown(void) { ring_delete(buffer); }
 void test_ring_create(void) {
   TEST_ASSERT_NOT_NULL(buffer);
 
-  /*for (int i = 0; i < MAX_nbOfElements; i++) {
+  /*TEST_ASSERT_NOT_NULL_MESSAGE(buffer->data, "buffer->data is null");
+  for (int i = 0; i < MAX_nbOfElements; i++) {
     TEST_ASSERT_EQUAL_INT_MESSAGE(0, buffer->data[i], "data should be 0");
   }*/
 }

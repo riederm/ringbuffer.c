@@ -4,6 +4,7 @@ CFLAGS += -g
 CFLAGS += -Wextra
 #CFLAGS += -pedantic
 #CFLAGS += -Werror
+CFLAGS += -D UNITY_OUTPUT_COLOR
 
 CC = gcc
 
